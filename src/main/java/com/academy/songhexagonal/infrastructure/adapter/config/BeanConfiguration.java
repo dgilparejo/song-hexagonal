@@ -1,9 +1,11 @@
 package com.academy.songhexagonal.infrastructure.adapter.config;
 
 import com.academy.songhexagonal.application.port.input.CreateSongInputPort;
+import com.academy.songhexagonal.application.port.input.GetAllSongInputPort;
 import com.academy.songhexagonal.application.port.input.GetSongInputPort;
 import com.academy.songhexagonal.application.port.output.SongOutputPort;
 import com.academy.songhexagonal.application.usecases.CreateSongUseCase;
+import com.academy.songhexagonal.application.usecases.GetAllSongUseCase;
 import com.academy.songhexagonal.application.usecases.GetProductUseCase;
 import com.academy.songhexagonal.infrastructure.adapter.output.persistence.SongPersistenceAdapter;
 import com.academy.songhexagonal.infrastructure.adapter.output.persistence.mapper.SongPersistanceMapper;
@@ -27,5 +29,10 @@ public class BeanConfiguration {
     @Bean
     public GetSongInputPort getSongInputPort(SongOutputPort songOutputPort) {
         return new GetProductUseCase(songOutputPort);
+    }
+
+    @Bean
+    public GetAllSongInputPort getAllSongInputPort(SongOutputPort songOutputPort) {
+        return new GetAllSongUseCase(songOutputPort);
     }
 }
