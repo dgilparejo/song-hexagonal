@@ -7,6 +7,8 @@ import com.academy.songhexagonal.infrastructure.adapter.output.persistence.mappe
 import com.academy.songhexagonal.infrastructure.adapter.output.persistence.repository.SongRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class SongPersistenceAdapter implements SongOutputPort {
 
@@ -19,6 +21,18 @@ public class SongPersistenceAdapter implements SongOutputPort {
         SongEntity songEntity = this.songPersistanceMapper.toSongEntity(song);//Mapping to entity
         songEntity = this.songRepository.save(songEntity);//Save in DB
         song = this.songPersistanceMapper.toSong(songEntity);//Mapping to song
-        return song;
+        return song;//Return
+    }
+
+    @Override
+    public Optional<Song> getProductById(Long id) {
+        final Optional<SongEntity> songEntity = this.songRepository.findById(id);//Get from DB
+
+        if(songEntity.isEmpty()){//Check if exists
+            return Optional.empty();
+        }
+
+        final Song song = this.songPersistanceMapper.toSong(songEntity.get());//Mapping to song
+        return Optional.of(song);//Return
     }
 }
