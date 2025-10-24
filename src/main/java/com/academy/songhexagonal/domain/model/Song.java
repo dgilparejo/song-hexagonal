@@ -1,6 +1,6 @@
 package com.academy.songhexagonal.domain.model;
 
-import lombok.Builder;
+import lombok.*;
 
 @Builder
 @Getter
