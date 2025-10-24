@@ -1,6 +1,6 @@
 package com.academy.songhexagonal.domain.model;
 
-import lombok.*;
+import lombok.Builder;
 
 import java.util.Objects;
 
@@ -67,4 +67,3 @@ public class Song {
                 '}';
     }
 }
-
